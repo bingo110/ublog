@@ -70,6 +70,7 @@
 		methods: {
 			swipeChange(e, index) {
 				console.log('返回：', e);
+				
 				console.log('当前索引：', index);
 			},
 			swipeClick(e, index) {
