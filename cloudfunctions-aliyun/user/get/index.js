@@ -23,7 +23,7 @@ exports.get = async (data) => {
 	} else {
 		user = await collection.where({
 			username: data.username,
-			password: util.sha1(data.password)
+			password: data.password
 		}).get()
 		
 		if (user.affectedDocs < 1) {

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-	import marked from 'marked'
+	// import marked from 'marked'
 	import Parse from '@/colorui/components/parse/parse.vue'
 	export default {
 		data() {
@@ -24,7 +24,7 @@
 					id: e.id
 				})
 				try{
-					this.article = marked(res.result.data[0].content)
+					// this.article = marked(res.result.data[0].content)
 				}catch(e){
 					//TODO handle the exception
 				}

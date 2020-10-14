@@ -9,11 +9,11 @@ Vue.prototype.$toast = (title, duration = 1500) => uni.showToast({
 	duration
 })
 
-Vue.prototype.$router = (url) => uni.navigateTo({
-	url: '/pages' + url,
-	animationType:"slide-in-left",
-	animationDuration: 800
-})
+// Vue.prototype.$router = (url) => uni.navigateTo({
+// 	url: '/pages' + url,
+// 	animationType:"slide-in-left",
+// 	animationDuration: 800
+// })
 
 Vue.prototype.$switchTab = (url) => uni.switchTab({
 	url: '/pages' + url

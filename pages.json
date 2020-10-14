@@ -43,23 +43,18 @@
 		"color": "#666666",
 		"selectedColor": "#1296DB",
 		"backgroundColor": "#FFFFFF",
-		"list": [{
-				"pagePath": "pages/home/home",
-				"text": "故事",
+		"list": [
+			{
+				"pagePath": "pages/login/login",
+				"text": "login",
 				"iconPath": "static/images/tabbar/story.png",
 				"selectedIconPath": "static/images/tabbar/story_active.png"
 			},
 			{
-				"pagePath": "pages/gallery/gallery",
-				"text": "画廊",
-				"iconPath": "static/images/tabbar/gallery.png",
-				"selectedIconPath": "static/images/tabbar/gallery_active.png"
-			},
-			{
-				"pagePath": "pages/activities/activities",
-				"text": "活动",
-				"iconPath": "static/images/tabbar/activities.png",
-				"selectedIconPath": "static/images/tabbar/activities_active.png"
+				"pagePath": "pages/home/home",
+				"text": "故事",
+				"iconPath": "static/images/tabbar/story.png",
+				"selectedIconPath": "static/images/tabbar/story_active.png"
 			},
 			{
 				"pagePath": "pages/my/my",
