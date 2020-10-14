@@ -1,87 +1,97 @@
 <template>
 	<view>
-	  <uni-swipe-action>
-	  	<uni-swipe-action-item v-for="(item, index) in swipeList" :right-options="item.options" :key="item.id" @change="swipeChange($event, index)" @click="swipeClick($event, index)">
-	  		<view class="content-box">
-	  			<text class="content-text">{{ item.content }}</text>
-	  		</view>
-	  	</uni-swipe-action-item>
-	  </uni-swipe-action>
+		<view class="box_bg">
+			<view class="box_bg_img">
+				<!-- 背景图-->
+				<image :src="bg_img" :mode="bg_img_fill" class="box_bg_img_view"></image>
+			</view>
+			
+			<uni-swipe-action class="box_list">
+				<uni-swipe-action-item v-for="(item, index) in swipeList" :right-options="item.options" :key="item.id" @change="swipeChange($event, index)"
+				 @click="swipeClick($event, index)">
+					<view class="content-box">
+						<text class="content-text">{{ item.content }}</text>
+					</view>
+				</uni-swipe-action-item>
+			</uni-swipe-action>
+		</view>
 	</view>
 </template>
 
-<script>   
+<script>
 	export default {
-		components:{
-		
+		components: {
+
 		},
 		data() {
 			return {
-			swipeList:[{
-					options: [{
-						text: '添加',
-						style: {
-							backgroundColor: 'rgb(255,58,49)'
-						}
-					}],
-					id: 0,
-					content: 'item1'
-				},
-				{
-					id: 1,
-					options: [{
-							text: '置顶'
-						},
-						{
-							text: '删除',
+				bg_img:"/static/images/bg/bg1.jpg",
+				bg_img_fill:"aspectFit",//背景填充模式
+				swipeList: [{
+						options: [{
+							text: '添加',
 							style: {
 								backgroundColor: 'rgb(255,58,49)'
 							}
-						}
-					],
-					content: 'item211<span style="color:red">test</span>'
-				},
-				{
-					id: 2,
-					options: [{
-							text: '置顶'
-						},
-						{
-							text: '标记为已读',
-							style: {
-								backgroundColor: 'rgb(254,156,1)'
+						}],
+						id: 0,
+						content: 'item1'
+					},
+					{
+						id: 1,
+						options: [{
+								text: '置顶'
+							},
+							{
+								text: '删除',
+								style: {
+									backgroundColor: 'rgb(255,58,49)'
+								}
 							}
-						},
-						{
-							text: '删除',
-							style: {
-								backgroundColor: 'rgb(255,58,49)'
+						],
+						content: 'item211<span style="color:red">test</span>'
+					},
+					{
+						id: 2,
+						options: [{
+								text: '置顶'
+							},
+							{
+								text: '标记为已读',
+								style: {
+									backgroundColor: 'rgb(254,156,1)'
+								}
+							},
+							{
+								text: '删除',
+								style: {
+									backgroundColor: 'rgb(255,58,49)'
+								}
 							}
-						}
-					],
-					content: 'item3'
-				}
-			]
+						],
+						content: 'item3'
+					}
+				]
 			}
 		},
 		onLoad() {
-			
+
 		},
 		methods: {
 			swipeChange(e, index) {
 				console.log('返回：', e);
-				
+
 				console.log('当前索引：', index);
 			},
 			swipeClick(e, index) {
-				
+
 			}
 		}
 	}
 </script>
 
 
-<style>
+<style lang="scss" scoped>
 	@charset "UTF-8";
 
 	/* 头条小程序组件内不能引入字体 */
@@ -235,5 +245,31 @@
 	.slot-button-text {
 		color: #ffffff;
 		font-size: 14px;
+	}
+
+	/* ==============new===================== */
+	.box_bg {
+		background-color: #000;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+    
+		.box_list {
+			position: absolute;
+			width: 80%;
+			top: 12rem;
+			left: 10%;
+		}
+		.box_bg_img {
+			position: absolute;
+			width: 100%;
+			top: 0;
+			left: 0%;
+			height:100%;
+			.box_bg_img_view{
+				width: 100%;
+				height:100%
+			}
+		}
 	}
 </style>

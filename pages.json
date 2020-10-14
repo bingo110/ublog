@@ -38,30 +38,30 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
 		"navigationStyle": "custom"
-	},
-	"tabBar": {
-		"color": "#666666",
-		"selectedColor": "#1296DB",
-		"backgroundColor": "#FFFFFF",
-		"list": [
-			{
-				"pagePath": "pages/login/login",
-				"text": "login",
-				"iconPath": "static/images/tabbar/story.png",
-				"selectedIconPath": "static/images/tabbar/story_active.png"
-			},
-			{
-				"pagePath": "pages/home/home",
-				"text": "故事",
-				"iconPath": "static/images/tabbar/story.png",
-				"selectedIconPath": "static/images/tabbar/story_active.png"
-			},
-			{
-				"pagePath": "pages/my/my",
-				"text": "我的",
-				"iconPath": "static/images/tabbar/my.png",
-				"selectedIconPath": "static/images/tabbar/my_active.png"
-			}
-		]
 	}
+	// "tabBar": {
+	// 	"color": "#666666",
+	// 	"selectedColor": "#1296DB",
+	// 	"backgroundColor": "#FFFFFF",
+	// 	"list": [
+	// 		{
+	// 			"pagePath": "pages/login/login",
+	// 			"text": "login",
+	// 			"iconPath": "static/images/tabbar/story.png",
+	// 			"selectedIconPath": "static/images/tabbar/story_active.png"
+	// 		},
+	// 		{
+	// 			"pagePath": "pages/home/home",
+	// 			"text": "故事",
+	// 			"iconPath": "static/images/tabbar/story.png",
+	// 			"selectedIconPath": "static/images/tabbar/story_active.png"
+	// 		},
+	// 		{
+	// 			"pagePath": "pages/my/my",
+	// 			"text": "我的",
+	// 			"iconPath": "static/images/tabbar/my.png",
+	// 			"selectedIconPath": "static/images/tabbar/my_active.png"
+	// 		}
+	// 	]
+	// }
 }
