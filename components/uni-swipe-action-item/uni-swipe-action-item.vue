@@ -271,7 +271,7 @@
 
 	.uni-swipe_box {
 		/* #ifndef APP-NVUE */
-		display: flex;
+		display: block;
 		flex-shrink: 0;
 		/* #endif */
 		position: relative;

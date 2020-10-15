@@ -49,4 +49,5 @@
 	@import "colorui/icon.css";
 	@import "colorui/animation.css";
 	@import "colorui/components/parse/parse.css";
+	@import "font-awesome-4.7.0/css/font-awesome.css";
 </style>
