@@ -2,7 +2,7 @@ module.exports = {
 	// langType 属性为语言包标识，请勿删除
 	langType : 'zh-CN',
 	// 登陆页
-	login_title: '博客',
+	login_title: '记录美好生活',
 	login_form_title: '登录',
 	login_form_username_placeholder: '请输入用户名',
 	login_form_password_placeholder: '请输入密码',
@@ -20,8 +20,9 @@ module.exports = {
 	// 侧边栏
 	drawer_search: '搜索',
 	drawer_friends: '好友',
-	drawer_feed: '反馈',
+	drawer_about: '关于',
 	drawer_settings: '设置',
 	// 我的
-	my: '我的'
+	my: '我的',
+	home_index:'记录美好时光',
 }

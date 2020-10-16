@@ -8,6 +8,7 @@ $mainBlack3: #999999;
 $lineColor: #ebedf0;
 $shadow: 0 0 20rpx -5rpx rgba(0, 0, 0, 0.1);
 $listBg: rgba(0, 0, 0, 0.5); //黑色半透明
+$writeBg: rgba(255, 255, 255, 0.5); //白色半透明
 
 %clear-float {
 	&:after {
@@ -26,4 +27,138 @@ $listBg: rgba(0, 0, 0, 0.5); //黑色半透明
 	-webkit-line-clamp: $line;
 	overflow: hidden;
 	word-break: break-all;
+}
+/* ==============new===================== */
+.box_bg {
+	background-color: #000;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	/*按钮样式*/
+	.box_footer_buttons_box {
+		position: absolute;
+		bottom: 5rem;
+		right: 3rem;
+
+		.box_footer_buttons_change_bg {
+			color: #ffffff;
+			font-size: 3rem;
+		}
+	}
+
+	/*列表样式*/
+	.box_list {
+		position: absolute;
+		width: 80%;
+		top: 12rem;
+		left: 10%;
+
+		.box_list_items {
+			/*display: block;*/
+		}
+
+		.content-text {
+			padding: 7px;
+
+			.box_list_items_right {
+				position: absolute;
+				right: 1rem;
+				top: 1.3rem;
+				color: #adadad;
+
+				.box_list_items_right_span {
+					margin-left: 5px;
+				}
+
+				.box_list_items_right_day {
+					margin-right: 3px;
+				}
+			}
+
+			.box_list_items_title {
+				font-size: 1.1rem;
+				font-weight: bold;
+
+				.box_list_items_title_span {
+					margin-right: 5px;
+				}
+			}
+
+			.box_list_items_content_left {
+				font-size: 1rem;
+				color: #adadad;
+			}
+
+			.box_list_items_content_right {
+				font-size: 0.9rem;
+				color: #adadad;
+				margin-left: 5px;
+			}
+		}
+
+		.uni-swipe {
+			background: $listBg;
+			border-radius: 10px;
+			margin-bottom: 2px;
+			color: #ffffff;
+			/*padding-left: 10px;*/
+		}
+	}
+
+	.box_bg_img {
+		position: absolute;
+		width: 100%;
+		top: 0;
+		left: 0%;
+		height: 100%;
+
+		.box_bg_img_view {
+			width: 100%;
+			height: 100%
+		}
+	}
+
+	/*详情页倒计时*/
+	.box_details{
+		position: absolute;
+		width: 80%;
+		color: #fff;
+		text-align: center;
+		top: 35%;
+		font-size: 2rem;
+		background: $listBg;
+		margin-left: 10%;
+		border-radius: 5px;
+		padding: 10px;
+
+
+		.box_details_title{
+			font-size: 1.2rem;
+		}
+		.box_details_time{
+			margin-top: 1rem;
+			color: #2ef77e;
+			font-size: 1.3rem;
+			letter-spacing: 4px;
+		}
+		.box_details_footer{
+			font-size: 1rem;
+			margin-top: 1rem;
+		}
+	}
+	/*form表单*/
+	.box_form{
+		background:$writeBg;
+		position: absolute;
+		width: 80%;
+		left: 10%;
+		top: 20%;
+		.cu-form-group{
+			background-color: unset;
+		}
+		.box_bg_form_btn{
+			width: 100%;
+			text-align: center;
+		}
+	}
 }

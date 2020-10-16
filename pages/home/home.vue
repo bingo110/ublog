@@ -1,18 +1,21 @@
 <template>
     <view>
         <view class="box_bg">
+            <cu-custom :bgColor="'bg-'+themeColor.name" :isBack="true" :icon="'sort'">
+                <block slot="content">{{lang.home_index}}</block>
+            </cu-custom>
             <view class="box_bg_img">
                 <!-- 背景图-->
-                <image :src="bg_img" :mode="bg_img_fill" class="box_bg_img_view"></image>
+                <image :src="homeIndex.bg_img" :mode="homeIndex.bg_img_fill" class="box_bg_img_view"></image>
             </view>
 
             <uni-swipe-action class="box_list">
                 <uni-swipe-action-item class="box_list_items " v-for="(item, index) in swipeList"
                                        :right-options="item.options" :key="item.id"
-                                       @change="swipeChange($event, index)" @click="swipeClick($event, index)">
-                    <div class="content-text">
+                                       @change="swipeChange($event, index)">
+                    <div class="content-text" @click="swipeClick($event, index,item)">
                         <div class="box_list_items_title">
-                            <span class="box_list_items_title_span"><text  class="fa fa-heart "></text> </span>
+                            <span class="box_list_items_title_span"><text class="fa fa-heart "></text> </span>
                             {{ item.title }}
                         </div>
                         <div class="box_list_items_content">
@@ -21,7 +24,7 @@
                         </div>
                         <div class="box_list_items_right">
                             <span class="box_list_items_right_day">{{ item.daysOffset }}</span>天后
-                            <span class="box_list_items_right_span"><text  class="fa  fa-caret-right"></text> </span>
+                            <span class="box_list_items_right_span"><text class="fa  fa-caret-right"></text> </span>
                         </div>
 
                     </div>
@@ -29,11 +32,14 @@
             </uni-swipe-action>
             <view class="box_footer_buttons_box">
                 <div class="box_footer_buttons_change_bg" @click="changeBg()">
-                    <text  class="fa fa-gratipay fa-spin"></text>
+                    <text class="fa fa-gratipay fa-spin"></text>
                 </div>
-                <div class="box_footer_buttons_change_bg" @click="changeBg()">
-                    <text  class="fa fa-plus-circle "></text>
+                <div class="box_footer_buttons_change_bg" @click="addForm()">
+                    <text class="fa fa-plus-circle "></text>
                 </div>
+            </view>
+            <view>
+
             </view>
         </view>
     </view>
@@ -44,17 +50,6 @@
         components: {},
         data() {
             return {
-                bg_img:"",
-                bg_img_index:0,
-                bg_img_arr: [
-                    "/static/images/bg/bg1.jpg",
-                    "/static/images/bg/bg2.jpg",
-                    "/static/images/bg/bg3.jpg",
-                    "/static/images/bg/bg4.jpg",
-                    "/static/images/bg/bg5.jpg",
-                    "/static/images/bg/bg6.jpg",
-                ],
-                bg_img_fill: "aspectFill",//背景填充模式
                 swipeList: [
                     {
                         id: 0,
@@ -100,7 +95,7 @@
             }
         },
         onLoad() {
-            this.bg_img=this.bg_img_arr[this.bg_img_index];
+            this.changeBg();
         },
         methods: {
             swipeChange(e, index) {
@@ -108,16 +103,16 @@
 
                 console.log('当前索引：', index);
             },
-            swipeClick(e, index) {
-
+            swipeClick(e, index,item) {
+                console.log('返回：', index);
+                // var item=JSON.stringify(item);
+                this.$routerJump(`/page-details/page-details?id=${item.id}`)
             },
-            changeBg(){
-                if(this.bg_img_index<this.bg_img_arr.length){
-                    this.bg_img_index++;
-                }else{
-                    this.bg_img_index=0;
-                }
-                this.bg_img=this.bg_img_arr[this.bg_img_index];
+            changeBg() {
+                this.$store.commit('setBgImg');
+            },
+            addForm() {
+                this.$routerJump(`/form/add`)
             }
         }
     }
@@ -290,85 +285,5 @@
         font-size: 14px;
     }
 
-    /* ==============new===================== */
-    .box_bg {
-        background-color: #000;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-         /*按钮样式*/
-         .box_footer_buttons_box{
-             position: absolute;
-             bottom: 5rem;
-             right: 3rem;
-             .box_footer_buttons_change_bg{
-                 color: #ffffff;
-                 font-size: 3rem;
-             }
-         }
-        /*列表样式*/
-        .box_list {
-            position: absolute;
-            width: 80%;
-            top: 12rem;
-            left: 10%;
 
-            .box_list_items {
-                /*display: block;*/
-            }
-
-            .content-text {
-                padding: 7px;
-                .box_list_items_right{
-                    position: absolute;
-                    right: 1rem;
-                    top: 1.3rem;
-                    color: #adadad;
-                    .box_list_items_right_span{
-                        margin-left: 5px;
-                    }
-                    .box_list_items_right_day{
-                        margin-right: 3px;
-                    }
-                }
-                .box_list_items_title{
-                    font-size: 1.1rem;
-                    font-weight:bold;
-                    .box_list_items_title_span{
-                        margin-right: 5px;
-                    }
-                }
-                .box_list_items_content_left {
-                    font-size: 1rem;
-                    color: #adadad;
-                }
-                .box_list_items_content_right {
-                    font-size: 0.9rem;
-                    color: #adadad;
-                    margin-left: 5px;
-                }
-            }
-
-            .uni-swipe {
-                background: $listBg;
-                border-radius: 10px;
-                margin-bottom: 2px;
-                color: #ffffff;
-                /*padding-left: 10px;*/
-            }
-        }
-
-        .box_bg_img {
-            position: absolute;
-            width: 100%;
-            top: 0;
-            left: 0%;
-            height: 100%;
-
-            .box_bg_img_view {
-                width: 100%;
-                height: 100%
-            }
-        }
-    }
 </style>

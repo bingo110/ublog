@@ -20,8 +20,9 @@ module.exports = {
 	// 侧边栏
 	drawer_search: 'Search',
 	drawer_friends: 'Friends',
-	drawer_feed: 'Feed',
+	drawer_about: 'About',
 	drawer_settings: 'Settings',
 	// 我的
-	my: 'MY'
+	my: 'MY',
+	home_index:'记录美好时光',
 }

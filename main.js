@@ -19,6 +19,9 @@ Vue.mixin({
 		},
 		errorMsg() {
 			return this.$store.state.errorMsg
+		},
+		homeIndex() {
+			return this.$store.state.homeIndex
 		}
 	}
 })

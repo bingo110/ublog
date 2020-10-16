@@ -44,7 +44,9 @@
 </script>
 
 <style>
+	
 	/*每个页面公共css */
+	/*@import './common/uni.css';*/
 	@import "colorui/main.css";
 	@import "colorui/icon.css";
 	@import "colorui/animation.css";

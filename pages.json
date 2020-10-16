@@ -19,7 +19,14 @@
         }
         ,{
             "path" : "pages/my/my",
-            "style" : {}
+            "style": {
+              "navigationBarTitleText": "详情",
+              "app-plus": {
+                "titleNView": {
+                  "type": "transparent"
+                }
+              }
+            }
         }
         ,{
             "path" : "pages/activities/activities",
@@ -28,9 +35,25 @@
         ,{
             "path" : "pages/page-details/page-details",
             "style" : {
-				"navigationStyle":"default"
+              "navigationBarTitleText": "详情",
+              "app-plus": {
+                "titleNView": {
+                  "type": "transparent"//透明渐变导航栏 App-nvue 2.4.4+ 支持
+                }
+              }
 			}
         }
+        ,{
+        "path" : "pages/form/add",
+        "style" : {
+          "navigationBarTitleText": "添加",
+          "app-plus": {
+            "titleNView": {
+              "type": "transparent"//透明渐变导航栏 App-nvue 2.4.4+ 支持
+            }
+          }
+        }
+      }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -39,29 +62,29 @@
 		"backgroundColor": "#F8F8F8",
 		"navigationStyle": "custom"
 	}
-	// "tabBar": {
-	// 	"color": "#666666",
-	// 	"selectedColor": "#1296DB",
-	// 	"backgroundColor": "#FFFFFF",
-	// 	"list": [
-	// 		{
-	// 			"pagePath": "pages/login/login",
-	// 			"text": "login",
-	// 			"iconPath": "static/images/tabbar/story.png",
-	// 			"selectedIconPath": "static/images/tabbar/story_active.png"
-	// 		},
-	// 		{
-	// 			"pagePath": "pages/home/home",
-	// 			"text": "故事",
-	// 			"iconPath": "static/images/tabbar/story.png",
-	// 			"selectedIconPath": "static/images/tabbar/story_active.png"
-	// 		},
-	// 		{
-	// 			"pagePath": "pages/my/my",
-	// 			"text": "我的",
-	// 			"iconPath": "static/images/tabbar/my.png",
-	// 			"selectedIconPath": "static/images/tabbar/my_active.png"
-	// 		}
-	// 	]
-	// }
+//	 "tabBar": {
+//	 	"color": "#666666",
+//	 	"selectedColor": "#1296DB",
+//	 	"backgroundColor": "#FFFFFF",
+//	 	"list": [
+//	 		{
+//	 			"pagePath": "pages/login/login",
+//	 			"text": "login",
+//	 			"iconPath": "static/images/tabbar/story.png",
+//	 			"selectedIconPath": "static/images/tabbar/story_active.png"
+//	 		},
+//	 		{
+//	 			"pagePath": "pages/home/home",
+//	 			"text": "故事",
+//	 			"iconPath": "static/images/tabbar/story.png",
+//	 			"selectedIconPath": "static/images/tabbar/story_active.png"
+//	 		},
+//	 		{
+//	 			"pagePath": "pages/my/my",
+//	 			"text": "我的",
+//	 			"iconPath": "static/images/tabbar/my.png",
+//	 			"selectedIconPath": "static/images/tabbar/my_active.png"
+//	 		}
+//	 	]
+//	 }
 }

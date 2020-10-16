@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import store from '../store';
-
+import moment from 'moment'
+Vue.prototype.$moment = moment;
 Vue.prototype.$store = store;
 
 Vue.prototype.$toast = (title, duration = 1500) => uni.showToast({
@@ -9,11 +10,11 @@ Vue.prototype.$toast = (title, duration = 1500) => uni.showToast({
 	duration
 })
 
-// Vue.prototype.$router = (url) => uni.navigateTo({
-// 	url: '/pages' + url,
-// 	animationType:"slide-in-left",
-// 	animationDuration: 800
-// })
+Vue.prototype.$routerJump = (url) => uni.navigateTo({
+	url: '/pages' + url,
+	animationType:"slide-in-left",
+	animationDuration: 800
+})
 
 Vue.prototype.$switchTab = (url) => uni.switchTab({
 	url: '/pages' + url
@@ -36,6 +37,4 @@ Vue.prototype.$uniCloud = async (name, data) => {
 	} finally{
 		uni.hideLoading()
 	}
-	
-	
 }

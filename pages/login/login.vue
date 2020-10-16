@@ -1,6 +1,6 @@
 <template>
 	<view class="login">
-		<view class="login-title text-white text-sl text-center">11{{lang.login_title}}</view>
+		<view class="login-title text-white text-sl text-center">{{lang.login_title}}</view>
 		<view class="form-wrapper flex flex-direction margin-0-auto">
 			<view class="bg-white radius flex flex-direction align-center">
 				<view class="login-form-title text-bold text-xl margin-top-xl margin-bottom-xl">{{lang.login_form_title}}</view>
@@ -86,7 +86,7 @@
 
 <style lang="scss">
 	page{
-		background: #999;
+		background: #C0C0C0;
 	}
 	.login {
 		.login-title {

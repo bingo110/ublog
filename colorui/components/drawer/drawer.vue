@@ -51,7 +51,7 @@
 
 	.tui-drawer-show .tui-drawer-mask {
 		display: block;
-		opacity: 1;
+		opacity: 0;
 	}
 
 	.tui-drawer-show .tui-drawer-container {
@@ -96,6 +96,7 @@
 	.tui-drawer-left .tui-drawer-container {
 		left: 0;
 		top: 50%;
+		height: 50%;
 		transform: translate3d(-100%, -50%, 0);
 	}
 

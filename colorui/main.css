@@ -1880,6 +1880,7 @@ button.cuIcon.lg {
 .cu-custom {
 	display: block;
 	position: relative;
+
 }
 
 .cu-custom .cu-bar .content {
@@ -3438,7 +3439,10 @@ scroll-view.cu-steps .cu-item {
 .lines-white::after {
 	border-color: #ffffff;
 }
-
+.bg-black-opacity {
+	background-color: rgba(0 ,0 ,0,0.5)!important;
+	color: #ffffff!important;
+}
 .bg-red {
 	background-color: #e54d42!important;
 	color: #ffffff!important;

@@ -29,13 +29,28 @@ const store = new Vuex.Store({
 	state: {
 		lang: lang,
 		themeColor: {
-			title: '嫣红',
-			name: 'red',
+			title: '黑色半透明',
+			name: 'black-opacity',
 			color: '#e54d42'
 		},
-		errorMsg: '系统故障请稍后重试'
+		errorMsg: '系统故障请稍后重试',
+		//app背景图
+		homeIndex: {
+			bg_img: "",
+			bg_img_index: 0,
+			bg_img_arr: [
+				"/static/images/bg/bg1.jpg",
+				"/static/images/bg/bg2.jpg",
+				"/static/images/bg/bg3.jpg",
+				"/static/images/bg/bg4.jpg",
+				"/static/images/bg/bg5.jpg",
+				"/static/images/bg/bg6.jpg",
+			],
+			bg_img_fill: "aspectFill",//背景填充模式
+		}
 	},
 	mutations: {
+		//切换语言
 		changeLang: function(state){
 			uni.showActionSheet({
 				itemList:['简体中文', 'English'],
@@ -59,8 +74,18 @@ const store = new Vuex.Store({
 				}
 			})
 		},
+		//设置主题
 		setThemeColor(state, val) {
 			state.themeColor = val
+		},
+		//切换背景
+		setBgImg(state) {
+			if (state.homeIndex.bg_img_index < (state.homeIndex.bg_img_arr.length-1)) {
+				state.homeIndex.bg_img_index++;
+			} else {
+				state.homeIndex.bg_img_index = 0;
+			}
+			state.homeIndex.bg_img = state.homeIndex.bg_img_arr[state.homeIndex.bg_img_index];
 		}
 	}
 })
