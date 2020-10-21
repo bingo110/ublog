@@ -78,7 +78,7 @@
 				})
 			},
 			register() {
-				this.$router('/register/register')
+				this.$routerJump('/register/register')
 			}
 		}
 	}

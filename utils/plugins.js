@@ -2,6 +2,7 @@ import Vue from 'vue'
 import store from '../store';
 import moment from 'moment'
 Vue.prototype.$moment = moment;
+
 Vue.prototype.$store = store;
 
 Vue.prototype.$toast = (title, duration = 1500) => uni.showToast({

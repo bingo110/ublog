@@ -11,7 +11,7 @@
 			<view class="box_form">
                 <view class="cu-form-group margin-top">
                     <view class="title">请输入标题</view>
-                    <input placeholder="请输入标题" name="input"></input>
+                    <input placeholder="请输入标题" v-model="form.title" />
                 </view>
                 <view class="cu-form-group">
                     <view class="title">选择日期</view>
@@ -31,7 +31,7 @@
                 </view>
                 <view class="cu-form-group">
                     <view class="box_bg_form_btn">
-                        <button class="cu-btn bg-red margin-tb-sm lg round">提交</button>
+                        <button class="cu-btn bg-red margin-tb-sm lg round" @click="addForm">提交</button>
                     </view>
 
                 </view>
@@ -63,63 +63,34 @@
 		methods: {
             TimeChange(e){
                 console.log(e)
-                this.time=e.detail.value;
+                this.form.time=e.detail.value;
             },
             DateChange(e){
                 console.log(e);
-                this.date=e.detail.value;
+                this.form.date=e.detail.value;
+                console.log( this.form.date);
             },
-            formSubmit: function(e) {
-                console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
-                var formdata = e.detail.value
-                uni.showModal({
-                    content: '表单数据内容：' + JSON.stringify(formdata),
-                    showCancel: false
-                });
-            },
-            formReset: function(e) {
-                console.log('清空数据')
-            },
-            async login() {
-                if (!this.form.openid) {
-                    if (!this.form.username || !this.form.password) {
-                        this.$toast('请填写正确信息')
-                        return
-                    }
-                } else {
-                    this.form.username = ''
-                    this.form.password = ''
+            async addForm() {
+                if (!this.form.title) {
+                    this.$toast('请填写正确信息')
+                    return;
                 }
-
                 let res = await uniCloud.callFunction({
-                    name: 'user',
-                    data: Object.assign({}, this.form, {type: 'get'})
+                    name: 'remind',
+                    data: Object.assign({}, this.form, {type: 'add'})
                 })
+                // console.log(res)
                 if (res.result.code === 0) {
-                    this.$toast('登陆成功')
-                    this.$relaunch('/home/home')
+                    this.$toast('添加成功')
+                    setTimeout(() =>{
+                        this.$routerJump('/home/home')
+                    }, 1500)
                 } else {
                     this.$toast(res.result.msg)
                 }
             },
-            loginWithWechat() {
-                let _this = this
-                uni.login({
-                    success(res) {
-                        uniCloud.callFunction({
-                            name: 'loginWithWechat',
-                            data:{
-                                js_code: res.code
-                            }
-                        }).then((res) => {
-                            _this.form.openid = res.result.data.openid
-                            _this.login()
-                        })
-                    }
-                })
-            },
             register() {
-                this.$router('/register/register')
+                this.$routerJump('/register/register')
             }
 		}
 	}

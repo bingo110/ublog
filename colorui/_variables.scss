@@ -50,9 +50,10 @@ $writeBg: rgba(255, 255, 255, 0.5); //白色半透明
 	.box_list {
 		position: absolute;
 		width: 80%;
-		top: 12rem;
+		top: 10rem;
 		left: 10%;
-
+		max-height: 323px;
+		overflow: scroll;
 		.box_list_items {
 			/*display: block;*/
 		}
@@ -78,9 +79,16 @@ $writeBg: rgba(255, 255, 255, 0.5); //白色半透明
 			.box_list_items_title {
 				font-size: 1.1rem;
 				font-weight: bold;
-
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				/* white-space: nowrap; */
+				width: 70%;
 				.box_list_items_title_span {
 					margin-right: 5px;
+					margin-left: 1px;
 				}
 			}
 

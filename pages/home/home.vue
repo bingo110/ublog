@@ -12,8 +12,8 @@
             <uni-swipe-action class="box_list">
                 <uni-swipe-action-item class="box_list_items " v-for="(item, index) in swipeList"
                                        :right-options="item.options" :key="item.id"
-                                       @change="swipeChange($event, index)">
-                    <div class="content-text" @click="swipeClick($event, index,item)">
+                                       @change="swipeChange($event,index,item)" @click="swipeClick($event,index,item)"  >
+                    <div class="content-text" @click="itemClick($event,index,item)">
                         <div class="box_list_items_title">
                             <span class="box_list_items_title_span"><text class="fa fa-heart "></text> </span>
                             {{ item.title }}
@@ -23,7 +23,9 @@
                             <span class="box_list_items_content_right">{{ item.content }}</span>
                         </div>
                         <div class="box_list_items_right">
-                            <span class="box_list_items_right_day">{{ item.daysOffset }}</span>天后
+                            <span v-if="item.daysOffset > 0"><span class="box_list_items_right_day">{{ item.daysOffset }}</span>天后</span>
+                            <span v-else-if="item.daysOffset===0">今天</span>
+                            <span v-else>已过期</span>
                             <span class="box_list_items_right_span"><text class="fa  fa-caret-right"></text> </span>
                         </div>
 
@@ -50,67 +52,102 @@
         components: {},
         data() {
             return {
-                swipeList: [
-                    {
-                        id: 0,
-                        options: [{
-                            text: '删除',
-                            style: {
-                                backgroundColor: 'rgb(255,58,49)'
-                            }
-                        }],
-                        title: '恋爱纪念日',
-                        content: '2020-11-10',
-                        daysOffset: '20'
-                    },
-                    {
-                        id: 1,
-                        options: [
-                            {
-                                text: '删除',
-                                style: {
-                                    backgroundColor: 'rgb(255,58,49)'
-                                }
-                            }
-                        ],
-                        title: '月考倒计时',
-                        content: '2020-12-09',
-                        daysOffset: '38'
-                    },
-                    {
-                        id: 2,
-                        options: [
-                            {
-                                text: '删除',
-                                style: {
-                                    backgroundColor: 'rgb(255,58,49)'
-                                }
-                            }
-                        ],
-                        title: '项目开始倒计时',
-                        content: '2021-01-01',
-                        daysOffset: '50'
-                    }
-                ]
+                swipeList: []//列表数据
             }
         },
         onLoad() {
             this.changeBg();
+            this.getListData();
         },
         methods: {
-            swipeChange(e, index) {
-                console.log('返回：', e);
+            //获取提醒事件列表
+            async getListData() {
+                let that = this;
+                that.swipeList=[];
+                try {
+                    const res = await this.$uniCloud('remind', {
+                        type: 'getListByUid',
+                        uid: "",
+                    })
+                    console.log("云函数getListByUid返回:", res)
+                    if (res.result.total > 0) {
+                        res.result.list.forEach(function (item, index) {
+                            let tempItems = {
+                                id: item._id,
+                                options: [{
+                                    text: '删除',
+                                    btn: 'del',
+                                    style: {
+                                        backgroundColor: 'rgb(255,58,49)'
+                                    }
+                                }],
+                                title: item.title,
+                                content: item.date,
+                                daysOffset: that.getDaysOffset(item.date)
+                            }
+                            that.swipeList.push(tempItems);
+                        })
+                        that.swipeList=that.sortKey(that.swipeList,'daysOffset'); //排序
+                    }
+                } catch (e) {
+                    this.$toast(this.errorMsg)
+                }
+            },
+            //删除提醒事件
+            async delItem(item){
+                try {
+                    const res = await this.$uniCloud('remind', {
+                        type: 'remove',
+                        _id: item.id,
+                    })
+                    console.log("云函数remove返回:", res)
+                    if (res.result.code === 0) {
+                        this.getListData();
+                    }
+                } catch (e) {
+                    this.$toast(this.errorMsg)
+                }
+            },
+            //数组排序-正序
+            sortKey(array, key) {
+                return array.sort(function (a, b) {
+                    var x = a[key];
+                    var y = b[key];
+                    return ((x < y) ? -1 : (x > y) ? 1 : 0)
+                })
+            },
+            //计算天数
+            getDaysOffset($endDate) {
+                var nowtime = new Date(),  //获取当前时间
+                    endtime = new Date($endDate);  //定义结束时间
 
+                var lefttime = endtime.getTime() - nowtime.getTime(); //距离结束时间的毫秒数
+                var leftd = Math.floor(lefttime / (1000 * 60 * 60 * 24)); //计算天数
+                return leftd + 1;
+            },
+            //swipe改变事件
+            swipeChange(e, index,item) {
+                console.log('返回：', e);
                 console.log('当前索引：', index);
             },
-            swipeClick(e, index,item) {
-                console.log('返回：', index);
-                // var item=JSON.stringify(item);
-                this.$routerJump(`/page-details/page-details?id=${item.id}`)
+            //swipe点击事件
+            swipeClick(e, index, item) {
+                console.log('swipeClick：', e);
+                if(e.content.btn==="del"){  //点击删除按钮
+                     this.delItem(item);
+                }
             },
+            //跳转内容页
+            itemClick(e, index, item){
+                console.log('itemClick：', index);
+                // var item=JSON.stringify(item);
+                 this.$routerJump(`/page-details/page-details?id=${item.id}`)
+            },
+            //切换背景
             changeBg() {
                 this.$store.commit('setBgImg');
             },
+            //跳转添加页
             addForm() {
                 this.$routerJump(`/form/add`)
             }

@@ -12,7 +12,7 @@ exports.add = async (data) => {
 	if (user.affectedDocs < 1) {
 		const res = await collection.add({
 			username: data.username,
-			password: util.sha1(data.password) // 加密
+			password: data.password // 加密
 		})
 		return {
 			code: global.successCode,
